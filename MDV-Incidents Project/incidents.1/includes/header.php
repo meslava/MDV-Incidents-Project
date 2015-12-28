@@ -14,7 +14,9 @@
 		<ul>
 			<li><a href="incident-new.php">New ticket</a></li>
 			<li><a href="incident-list.php">View tickets</a></li>
-			<li><?php // Create a login/logout link:
+			<li><?php
+// Create a login/logout link:
+session_start();
 if (isset($_SESSION['uid'])) {
 	echo '<a href="logout.php">Logout</a>';
 } else {
@@ -23,5 +25,4 @@ if (isset($_SESSION['uid'])) {
 ?></li>
 		</ul>
 	</div>
-	<div id="content"><!-- Start of the page-specific content. -->
-<!-- Script 12.10 - header.html -->
+	<div id="content">

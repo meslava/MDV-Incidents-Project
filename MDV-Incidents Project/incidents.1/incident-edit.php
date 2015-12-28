@@ -3,7 +3,7 @@
 // This page is accessed through incident-list.php.
 
 $page_title = 'Edit an incident report';
-include ('includes/header.html');
+include ('includes/header.php');
 echo '<h1>Edit an incident report</h1>';
 
 // Check for a valid user ID, through GET or POST:
