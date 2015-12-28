@@ -8,6 +8,7 @@ include ('includes/header.php');
 echo '<h1>Reported incidents list</h1>';
 
 require ('../mysqli_connect.php'); // Connect to the db.
+				
 		
 // Make the query:
 $q = "SELECT usuario.name as user,tecnico.name as technician,i.status, i.open_date, i.close_date, i.description 
@@ -15,7 +16,7 @@ FROM
   INCIDENTS i,
   USERS usuario,
   USERS tecnico
-where usuario.uid=i.creator_uid and tecnico.uid=i.assigned_uid";
+where usuario.uid=i.creator_uid and tecnico.uid=i.assigned_uid and usuario.uid='".$_SESSION['uid']."'";
 $r = mysqli_query ($dbc, $q); // Run the query.
 
 // Count the number of returned rows:
