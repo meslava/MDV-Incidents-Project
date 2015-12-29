@@ -3,6 +3,7 @@
 
 $page_title = 'View the reported incidents list';
 include ('includes/header.php');
+include ('checksession.php');
 
 // Page header:
 echo '<h1>Reported incidents list</h1>';

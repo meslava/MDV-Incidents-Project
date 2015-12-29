@@ -5,13 +5,15 @@
 session_start(); // Access the existing session.
 
 // If no session variable exists, redirect the user:
-if (!isset($_SESSION['uid'])) {
+/*if (!isset($_SESSION['uid'])) {
 
 	// Need the functions:
-	require ('includes/login_functions.inc.php');
-//	redirect_user();	
+	//require ('includes/login_functions.inc.php');
+	//redirect_user();	
 	header("Location: index.php");	
-	
+*/
+include ('checksession.php');
+
 } else { // Cancel the session:
 
 	$_SESSION = array(); // Clear the variables array.
