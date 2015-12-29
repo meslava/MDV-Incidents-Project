@@ -42,7 +42,7 @@ if ($num > 0) { // If it ran OK, display the records.
 		//Sets the status color. If the status is OPEN it will be displayed with green text. Otherwise it will be displayed as red.
 		$sc = ($row['status']=='OPEN' ? '#509d2b' : '#ac0123');
 		echo '<tr>
-		      <td align="left"><a href="incident-edit.php?IID='.$row['IID'].'">Edit</a></td>
+		      <td align="left"><a href="incident-edit.php?IID='.$row['uid'].'">Edit</a></td>
 			  <td align="left">' . $row['user'] . '</td>
 			  <td align="left">' . $row['technician'] . '</td>
 			  <td align="left"> <font color="'.$sc.'">' . $row['status'] . '</font color></td>
