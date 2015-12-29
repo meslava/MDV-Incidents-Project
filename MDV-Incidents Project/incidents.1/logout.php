@@ -9,6 +9,7 @@ if (!isset($_SESSION['uid'])) {
 
 	// Need the functions:
 	require ('includes/login_functions.inc.php');
+//	redirect_user();	
 	header("Location: index.php");	
 	
 } else { // Cancel the session:
