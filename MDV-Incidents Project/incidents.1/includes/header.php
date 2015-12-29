@@ -2,12 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title><?php echo $page_title; 
-	session_start();
-if (!isset($_SESSION['uid'])) {
+	//Esto esta comentado por que hace bucle de redireccionamiento infinito. Mejor quizas solo poner el session_start o no poner nada.
+	//Otra opcion es comprobar el inicio de sesion en un archivo include.
+//	session_start();
+//if (!isset($_SESSION['uid'])) {
 	// Need the functions:
-	require ('login_functions.inc.php');
-	redirect_user();
-}
+//	require ('login_functions.inc.php');
+//	redirect_user();
+//}
 	?></title>	
 	<link rel="stylesheet" href="includes/style.css" type="text/css" media="screen" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -23,7 +25,7 @@ if (!isset($_SESSION['uid'])) {
 			<li><a href="incident-list.php">View tickets</a></li>
 			<li><?php
 // Create a login/logout link:
-session_start();
+//session_start();
 if (isset($_SESSION['uid'])) {
 	echo '<a href="logout.php">Logout</a>';
 } else {

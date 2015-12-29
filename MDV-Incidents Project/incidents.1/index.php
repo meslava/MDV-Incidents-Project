@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($check) { // OK!
 		
 		// Set the session data:
-		session_start();
+	//	session_start();
 		$_SESSION['uid']  = $data['uid'];
 		$_SESSION['name'] = $data['name'];
 	

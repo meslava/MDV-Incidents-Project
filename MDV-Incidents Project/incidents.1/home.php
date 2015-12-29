@@ -1,5 +1,5 @@
 <?php 
-session_start();
+//session_start();
 $page_title = 'Welcome to incidents report page';
 include ('includes/header.php');
 
