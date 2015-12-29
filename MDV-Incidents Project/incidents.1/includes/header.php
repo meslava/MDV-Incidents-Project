@@ -27,7 +27,7 @@
 // Create a login/logout link:
 //session_start();
 if (isset($_SESSION['uid'])) {
-	echo '<a href="logout.php">Logout</a>';
+	echo '<a href="../logout.php">Logout</a>';
 } else {
 	echo '<a href="index.php">Login</a>';
 }
