@@ -3,14 +3,14 @@
 // This page is accessed through incident-list.php.
 
 $page_title = 'Edit an incident report';
-include ('includes/header.php');
+require ('includes/header.php');
 echo '<h1>Edit an incident report</h1>';
 
 // Check for a valid user ID, through GET or POST:
-if ( (isset($_GET['IID'])) && (is_numeric($_GET['IID'])) ) { // From incident-list.php
-	$IID = $_GET['IID'];
-} elseif ( (isset($_POST['IID'])) && (is_numeric($_POST['IID'])) ) { // Form submission.
-	$IID = $_POST['IID'];
+if ( (isset($_GET['uid'])) && (is_numeric($_GET['uid'])) ) { // From incident-list.php
+	$IID = $_GET['uid'];
+} elseif ( (isset($_POST['uid'])) && (is_numeric($_POST['uid'])) ) { // Form submission.
+	$IID = $_POST['uid'];
 } else { // No valid ID, kill the script.
 	echo '<p class="error">This page has been accessed in error.</p>';
 	include ('includes/footer.html'); 
@@ -47,12 +47,12 @@ $stat=mysqli_real_escape_string($dbc, trim($_POST['status']));
 			//If it has been closed set the value close_date at the currentet date
 			if ($stat == "CLOSED"){
 				
-			$q = "UPDATE incidents SET technician='$tc', status='$stat', description='$descr', close_date=CURDATE() WHERE IID=$IID LIMIT 1";
+			$q = "UPDATE incidents SET technician='$tc', status='$stat', description='$descr', close_date=CURDATE() WHERE IID=$uid LIMIT 1";
 			$r = @mysqli_query ($dbc, $q);
 			//If the status is OPEN it might be a reopen incient, so this will set the close_date to NULL
 			}elseif ($stat == "OPEN"){
 			
-			$q = "UPDATE incidents SET technician='$tc', status='$stat', description='$descr', close_date=NULL WHERE IID=$IID LIMIT 1";
+			$q = "UPDATE incidents SET technician='$tc', status='$stat', description='$descr', close_date=NULL WHERE IID=$uid LIMIT 1";
 			$r = @mysqli_query ($dbc, $q);
 			}
 			if (mysqli_affected_rows($dbc) == 1) { // If it ran OK.
@@ -78,7 +78,7 @@ $stat=mysqli_real_escape_string($dbc, trim($_POST['status']));
 // Always show the form...
 
 // Retrieve the user's information:
-$q = "SELECT user, technician, open_date, close_date, description, status FROM incidents WHERE IID=$IID";		
+$q = "SELECT user, technician, open_date, close_date, description, status FROM incidents WHERE IID=$uid";		
 $r = @mysqli_query ($dbc, $q);
 
 if (mysqli_num_rows($r) == 1) { // Valid user ID, show the form.
@@ -96,7 +96,7 @@ if (mysqli_num_rows($r) == 1) { // Valid user ID, show the form.
 				</select></p>
 			<p>Description:</p> <p><textarea name="description" rows="10" cols="30">'.$row[4].'</textarea></p>
 			<p><input type="submit" name="submit" value="Submit" /></p>
-		<input type="hidden" name="IID" value="' . $IID . '" />
+		<input type="hidden" name="IID" value="' . $uid . '" />
 	</form>';
 
 } else { // Not a valid user ID.
