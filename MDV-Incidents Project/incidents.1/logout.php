@@ -13,7 +13,7 @@
 	header("Location: index.php");	
 */
 require ('checksession.php');
-checksessionorkill;
+checksessionorkill();
 
 /*
 } else { // Cancel the session:

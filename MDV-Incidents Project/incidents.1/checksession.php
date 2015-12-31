@@ -8,7 +8,7 @@ session_start();
 if (!isset($_SESSION['uid'])) {
 
 	// Need the functions:
-	require ('login_functions.inc.php');
+	require ('includes/login_functions.inc.php');
 	redirect_user();
 }
 }
@@ -20,7 +20,7 @@ function checksessionorkill(){
 if (!isset($_SESSION['uid'])) {
 
 	// Need the functions:
-	require ('login_functions.inc.php');
+	require ('includes/login_functions.inc.php');
 	redirect_user();
 } else { // Cancel the session:
 
