@@ -1,10 +1,11 @@
-<?php # Script 10.3 - edit_user.php
+<?php # Script - incident-edit.php
 // This page is for editing an incident report.
 // This page is accessed through incident-list.php.
 
 $page_title = 'Edit an incident report';
 require ('includes/header.php');
-
+require ('checksession.php');
+checksession();
 
 
 echo '<h1>Edit an incident report</h1>';
@@ -15,7 +16,7 @@ if ( (isset($_GET['uid'])) && (is_numeric($_GET['uid'])) ) { // From incident-li
 } elseif ( (isset($_POST['uid'])) && (is_numeric($_POST['uid'])) ) { // Form submission.
 	$uid = $_POST['uid'];
 } else { // No valid ID, kill the script.
-	echo '<p class="error">This page has been accessed in error1.</p>';
+	echo '<p class="error">This page has been accessed in error.</p>';
 	include ('includes/footer.html'); 
 	exit();
 }
@@ -60,6 +61,10 @@ $stat=mysqli_real_escape_string($dbc, trim($_POST['status']));
 			}elseif ($stat == "OPEN"){
 			
 			$q = "UPDATE incidents SET technician='$tc', status='$stat', description='$descr', close_date=NULL WHERE IID=$uid LIMIT 1";
+			
+			$q = "UPDATE INCIDENTS SET description='$descr' WHERE creator_uid=$uid LIMIT 1";
+			
+			
 		
 		*/	$q = "UPDATE INCIDENTS SET description='$descr' WHERE creator_uid=$uid LIMIT 1";
 			
@@ -96,6 +101,8 @@ $r = @mysqli_query ($dbc, $q);
 if (mysqli_num_rows($r) == 1) { // Valid user ID, show the form.
 	// Get the report's information:
 	$row = mysqli_fetch_array ($r, MYSQLI_NUM);
+	
+	
 	// Create the form:
 		echo '<form action="incident-edit.php" method="post">
 			<p>Description:</p> <p><textarea name="description" rows="10" cols="30">'.$row[0].'</textarea></p>
@@ -119,7 +126,7 @@ if (mysqli_num_rows($r) == 1) { // Valid user ID, show the form.
 	</form>'; */
 
 } else { // Not a valid user ID.
-	echo '<p class="error">This page has been accessed in error2.</p>';
+	echo '<p class="error">This page has been accessed in error.</p>';
 }
 
 //Close mysql connection

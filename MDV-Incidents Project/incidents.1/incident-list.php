@@ -1,4 +1,4 @@
-<?php # Script 9.6 - view_users.php #2
+<?php # Script - incident_list.php #2
 // This script retrieves all the records from the incidents table.
 session_start();
 $page_title = 'View the reported incidents list';
