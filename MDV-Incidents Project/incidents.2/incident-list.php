@@ -44,6 +44,7 @@ require ('../mysqli_connect.php'); // Connect to the db.
 
 			// Fetch and print all the records:
 				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+		
 			//Sets the status color. If the status is OPEN it will be displayed with green text. Otherwise it will be displayed as red.
 					$sc = ($row['status']=='OPEN' ? '#509d2b' : '#ac0123');
 					echo '<tr>

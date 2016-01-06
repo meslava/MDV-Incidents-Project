@@ -106,6 +106,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         	
         } elseif ($rowgroups['group'] == chief_technician) {
+                //Progress can be empty.
+                $progress = mysqli_real_escape_string($dbc, trim($_POST['progress']));
+            
+        	//This is just in case. The valors insert on the status filed are defined by the form and can't be modified by the user.
+        	$status = mysqli_real_escape_string($dbc, trim($_POST['status']));
+        	
+        	//The chief technician is the only that can be able modify the assigned technician for the incidents
+        	$assigned_uid = mysqli_real_escape_string($dbc, trim($_POST['assigned_uid']));
+        	
+        	if (empty($errors)) {
+                //Set the query
+                //If the status is OPEN mybe its a reopened ticket, so the close_date has to be null
+                if ($status=="OPEN") {
+                	$q = "UPDATE INCIDENTS SET progress='$progress', status='$status', close_date=NULL, assigned_uid='$assigned_uid' WHERE creator_uid=$uid";
+                //If the status is closed, means that now the ticket is closed, so the close_date must be the date of the moment of closure.
+                }elseif ($status=="CLOSED") {
+                	$q = "UPDATE INCIDENTS SET progress='$progress', status='$status', close_date=CURDATE(), assigned_uid='$assigned_uid' WHERE creator_uid=$uid LIMIT 1";
+                	   
+                	 
+                }
+                
+                //Run the query
+                $r = @mysqli_query($dbc, $q);
+                
+                if (mysqli_affected_rows($dbc) == 1) { // If it ran OK.
+                    
+                    // Print a message:
+                    echo '<p>The incident report has been edited.</p>';
+                    
+                } else { // If it did not run OK.
+                    echo '<p class="error">The incident report could not be edited due to a system error. We apologize for any inconvenience.</p>'; // Public message.
+                    echo '<p>' . mysqli_error($dbc) . '<br />Query: ' . $q . '</p>'; // Debugging message.
+                }
+            } else { // Report the errors.
+                echo '<p class="error">The following error(s) occurred:<br />';
+                foreach ($errors as $msg) { // Print each error.
+                    echo " - $msg<br />\n";
+                }
+                echo '</p><p>Please try again.</p>'; // If everything's OK.
+            }
+            
             
         }
         
@@ -204,9 +245,9 @@ if ($num == 1) {
         }
         
         //Form generation if the user is part of the group chief_technician
-    } elseif ($rowgroups['group' == chief_technician]) {
+    } elseif ($rowgroups['group'] == chief_technician) {
         // Retrieve the user's information:
-        $q = "SELECT user.name as name, i.open_date, i.close_date, i.status, i.description, i.progress
+        $q = "SELECT user.name as name, i.open_date, i.close_date, i.status, i.description, i.progress, i.assigned_uid
 				FROM INCIDENTS i, USERS user, USERS technician
 				WHERE user.uid = i.creator_uid
 				AND technician.uid = i.assigned_uid
@@ -228,6 +269,7 @@ if ($num == 1) {
 				</select></p>
 				<p>Description:' . $row['4'] . '</p>
 				<p>Progress:</p> <p><textarea name="progress" rows="10" cols="30">' . $row['5'] . '</textarea></p>
+				<p>Assigned_uid:<input type="text" name="assigned_uid" value="' . $row['6'] . '"/></p>
 				<p><input type="submit" name="submit" value="Submit" /></p>
 				<input type="hidden" name="uid" value="' . $uid . '" />
 			</form>';
