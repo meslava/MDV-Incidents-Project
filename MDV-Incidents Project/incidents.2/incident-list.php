@@ -11,19 +11,50 @@ echo '<h1>Incidents tickets list</h1>';
 
 require ('../mysqli_connect.php'); // Connect to the db.
 
-// Make the query to show all incidents created o assigned to this user:
 
-		$q = "SELECT usuario.uid, usuario.name as user,tecnico.name as technician,i.status, i.open_date, i.close_date, i.description, i.progress 
-		FROM
-		INCIDENTS i,
-		USERS usuario,
-		USERS tecnico
-		where usuario.uid=i.creator_uid and tecnico.uid=i.assigned_uid and (usuario.uid='".$_SESSION['uid']."' or tecnico.uid='".$_SESSION['uid']."')";
 
-		$r = mysqli_query ($dbc, $q); // Run the query.
+  //Query to know the group of the user that is loged in.
+    $qgroup = "SELECT  `group` FROM  `USERS` WHERE uid ={$_SESSION['uid']}";
+    //Run the query
+    $rgroup = mysqli_query($dbc, $qgroup);
+    //Saves the number of rows result of the query in the var $num
+    $num = mysqli_num_rows($rgroup);
+    $rowgroups = mysqli_fetch_array($rgroup, MYSQLI_ASSOC);
+        
+        
+if ($rowgroups['group'] == user || $rowgroups['group'] == technician ) {			
+		
+// Make the query:
 
-		// Count the number of returned rows:
-		$num = mysqli_num_rows($r);
+$q = "SELECT user.uid, user.name as user,technician.name as technician,i.status, i.open_date, i.close_date, i.description 
+FROM
+  INCIDENTS i,
+  USERS user,
+  USERS technician
+where user.uid=i.creator_uid and technician.uid=i.assigned_uid and (user.uid='".$_SESSION['uid']."' or technician.uid='".$_SESSION['uid']."')";
+$r = mysqli_query ($dbc, $q); // Run the query.
+
+// Count the number of returned rows:
+$num = mysqli_num_rows($r);
+
+}else if ($rowgroups['group'] == chief_technician) {
+	
+	$q = "SELECT user.uid, user.name as user,technician.name as technician,i.status, i.open_date, i.close_date, i.description 
+FROM
+  INCIDENTS i,
+  USERS user,
+  USERS technician
+where user.uid=i.creator_uid and technician.uid=i.assigned_uid";
+$r = mysqli_query ($dbc, $q); // Run the query.
+
+// Count the number of returned rows:
+$num = mysqli_num_rows($r);
+
+
+}else{
+	echo "The group checked doesn't exist";
+}// End of else from check of group
+
 
 		if ($num > 0) { // If it ran OK, display the records.
 

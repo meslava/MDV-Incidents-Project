@@ -10,20 +10,23 @@ checksession();
 echo '<h1>Reported incidents list</h1>';
 
 require ('../mysqli_connect.php'); // Connect to the db.
-				
-		
-// Make the query:
 
-$q = "SELECT user.uid, user.name as user,technician.name as technician,i.status, i.open_date, i.close_date, i.description 
-FROM
-  INCIDENTS i,
-  USERS user,
-  USERS technician
-where user.uid=i.creator_uid and technician.uid=i.assigned_uid and (user.uid='".$_SESSION['uid']."' or technician.uid='".$_SESSION['uid']."')";
-$r = mysqli_query ($dbc, $q); // Run the query.
 
-// Count the number of returned rows:
-$num = mysqli_num_rows($r);
+ // Make the query to show all incidents created o assigned to this user:
+
+		$q = "SELECT usuario.uid, usuario.name as user,tecnico.name as technician,i.status, i.open_date, i.close_date, i.description, i.progress 
+		FROM
+		INCIDENTS i,
+		USERS usuario,
+		USERS tecnico
+		where usuario.uid=i.creator_uid and tecnico.uid=i.assigned_uid and (usuario.uid='".$_SESSION['uid']."' or tecnico.uid='".$_SESSION['uid']."')";
+
+		$r = mysqli_query ($dbc, $q); // Run the query.
+
+		// Count the number of returned rows:
+		$num = mysqli_num_rows($r);
+
+
 
 if ($num > 0) { // If it ran OK, display the records.
 

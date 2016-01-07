@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         	//This is just in case. The valors insert on the status filed are defined by the form and can't be modified by the user.
         	$status = mysqli_real_escape_string($dbc, trim($_POST['status']));
         	
-        	//The chief technician is the only that can be able modify the assigned technician for the incidents
+        	//The chief technician is the only that can be able to modify the assigned technician for the incidents.
         	$assigned_uid = mysqli_real_escape_string($dbc, trim($_POST['assigned_uid']));
         	
         	if (empty($errors)) {
@@ -148,7 +148,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             
             
-        }
+        }else{
+            echo "The group checked this not allow here";
+        
         
         
         
@@ -180,8 +182,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $q = "UPDATE INCIDENTS SET description='$descr' WHERE creator_uid=$uid LIMIT 1";
         
 */
-        
-    } // End of if (empty($errors)) IF.
+        } // End of else from check of group
+    }else{ // End of else (empty($errors)) IF.
+        echo "The user have more than one group";
+    } 
     
 } // End of submit conditional.
 
@@ -251,7 +255,7 @@ if ($num == 1) {
 				FROM INCIDENTS i, USERS user, USERS technician
 				WHERE user.uid = i.creator_uid
 				AND technician.uid = i.assigned_uid
-				AND i.assigned_uid ={$_SESSION['uid']}";
+			";
         
         $r = @mysqli_query($dbc, $q);
         
