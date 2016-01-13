@@ -72,14 +72,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($r) { // If it ran OK.
 		
 			// Print a message:
-			echo '<h1>User registred succesfully!</h1>
+			echo '<div id="box">
+			<h1>User registred succesfully!</h1>
 		<p>You registred a user with the following data.</p>
 		<ul>
 		<li>Name:'.$name.'</li>
 		<li>Last name:'.$lastname.'</li>
 		<li>Group:'.$group.'</li>
 		<li>Email:'.$email.'</li>
-		</ul>';	
+		</ul></div>'
+		;	
 		
 		} else { // If it did not run OK.
 			
@@ -113,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 } // End of the main Submit conditional.
 ?>
+<div id="box">
 <h1>Register</h1>
 <form action="add-user.php" method="post">
 	<p>First Name: <input type="text" name="name" size="15" maxlength="20" value="<?php if (isset($_POST['name'])) echo $_POST['name']; ?>" /></p>
@@ -126,4 +129,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<p>Confirm Password: <input type="password" name="pass2" size="10" maxlength="20" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>"  /></p>
 	<p><input type="submit" name="submit" value="Register" /></p>
 </form>
+</div>
 <?php include ('includes/footer.html'); ?>

@@ -44,7 +44,7 @@ if (isset($errors) && !empty($errors)) {
 
 // Display the form:
 ?>
-<h1>Login</h1>
+<h1 >Login</h1>
 <form action="index.php" method="post">
 	<p>Email Address: <input type="text" name="email" size="20" maxlength="60"/></p>
 	<p>Password: <input type="password" name="passwd" size="20" maxlength="20"/></p>

@@ -8,7 +8,7 @@ require('checksession.php');
 checksession();
 
 
-echo '<h1>Edit an incident ticket</h1>';
+echo '<div id="box"><h1>Edit an incident ticket</h1>';
 
 // Check for a valid user ID, through GET or POST:
 /*if ((isset($_GET['uid'])) && (is_numeric($_GET['uid']))) { // From incident-list.php
@@ -187,7 +187,8 @@ if ($num == 1) {
 					<p>Description: </p> <p><textarea name="description" rows="10" cols="30">'.$row[0].'</textarea></p>
 					<p><input type="submit" name="submit" value="Submit" /></p>
 					<input type="hidden" name="iid" value="'.$iid.'" />
-				</form>';
+				</form>
+				</div>';
             
         } else { // Not a valid user ID.
             echo '<p class="error">This page has been accessed in error.</p>';
@@ -221,7 +222,8 @@ if ($num == 1) {
 				<p>Progress:</p> <p><textarea name="progress" rows="10" cols="30">' . $row['5'] . '</textarea></p>
 				<p><input type="submit" name="submit" value="Submit" /></p>
 				<input type="hidden" name="iid" value="' . $iid . '" />
-			</form>';
+			</form>
+			</div>';
         }
         
         //Form generation if the user is part of the group chief_technician
@@ -273,13 +275,15 @@ if ($num == 1) {
 			echo	'.</select>
 			<p><input type="submit" name="submit" value="Submit" /></p>
 				<input type="hidden" name="iid" value="' . $iid . '" />
-			</form>';
+			</form>
+			</div>';
          
         }
     } else {
         echo '<p class="error">Something went wrong.</p>';
     }
 }
+
 //Close mysql connection
 mysqli_close($dbc);
 

@@ -7,7 +7,7 @@ require ('checksession.php');
 checksession();
 
 // Page header:
-echo '<h1>Incidents tickets list</h1>';
+echo '<div id="box"><h1>Incidents tickets list</h1>';
 
 require ('../mysqli_connect.php'); // Connect to the db.
 
@@ -88,11 +88,11 @@ $num = mysqli_num_rows($r);
 					<td align="left">' . $row['progress'] . '</td></tr>
 					';
 				}
-	echo '</table>'; // Close the table.
+	echo '</table></div>'; // Close the table.
 	mysqli_free_result ($r); // Free up the resources.	
 
 		} else { // If no records were returned.
-			echo '<p class="error">There are currently no incidents reported.</p>';
+			echo '<div id="box"><p class="error">There are currently no incidents reported.</p></div>';
 }
 
 mysqli_close($dbc); // Close the database connection.
