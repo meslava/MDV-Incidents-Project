@@ -61,9 +61,9 @@ $num = mysqli_num_rows($r);
 			echo "<p>There are currently $num reported incidents.</p>\n";
 
 			// Table header.
-			echo '<table align="center" cellspacing="15" cellpadding="5">
+			echo '<table align="center" cellspacing="15" cellpadding="5" width="90%">
 			
-			<tr><td align="left"><b>Edit</b></td>
+			<tr class=color1><td align="left"><b>Edit</b></td>
 				<td align="left"><b>User</b></td>
 				<td align="left"><b>Assigned Technician</b></td>
 				<td align="left"><b>Current Status</b></td>

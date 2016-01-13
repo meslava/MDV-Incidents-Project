@@ -27,17 +27,6 @@ body {
 	font:0.8em Arial, Helvetica, "bitstream vera sans", sans-serif;
 }
 
-div .center{
-	
-	border-radius: 25px;
-    border: 2px solid #73AD21;
-
-    height: 150px; 
-    margin: 0;
-	padding: 0px 0px 0px 0px;
-	
-}
-
 /* header */
 #header {
 	border-bottom:1px solid #999;
@@ -75,6 +64,28 @@ div .center{
 	width:149px;
 	list-style:none;
 }
+#menu {
+	overflow: hidden;
+	height: 100px;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 0px 0px 0px 0px;
+	list-style: none;
+	line-height: normal;
+	text-align: center;
+}
+
+#menu li {
+	display: inline-block;
+}
+
+.container {
+	width: 1200px;
+	margin: 0px auto;
+}
+
 #navigation a {
 	color:#555;
 	display:block;

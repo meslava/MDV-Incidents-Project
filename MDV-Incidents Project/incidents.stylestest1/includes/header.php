@@ -11,10 +11,15 @@
 //	redirect_user();
 //}
 	?></title>	
-	<link rel="stylesheet" href="includes/style.css" type="text/css" media="screen" />
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="includes/bootstrap.css" type="text/css" media="screen" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	
+	
+	
 </head>
 <body>
+	<div id="contenedor">
 	<div id="header">
 		<h1>MDV - Incidents</h1>
 		<h2>Incidents tickets web</h2>
@@ -23,7 +28,6 @@
 		<ul>
 			<li><a href="incident-new.php">New ticket</a></li>
 			<li><a href="incident-list.php">View tickets</a></li>
-			<li><a href="incident_add.php">Add incident</a></li>
 			<li><?php
 // Create a login/logout link:
 //session_start();
@@ -36,3 +40,4 @@ if (isset($_SESSION['uid'])) {
 		</ul>
 	</div>
 	<div id="content">
+		

@@ -91,7 +91,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 } elseif ($status == "CLOSED") {
                     $q = "UPDATE INCIDENTS SET progress='$progress', status='$status', close_date=CURDATE() WHERE iid=$iid LIMIT 1";
                     
+                    
                 }
+                
                 //Run the query
                 $r = @mysqli_query($dbc, $q);
                 
@@ -116,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Progress can be empty.
             $progress = mysqli_real_escape_string($dbc, trim($_POST['progress']));
             
-            //This is just in case. The valors to insert on the status filed are defined by the form and can't be modified by the user.
+            //This is just in case. The valors insert on the status filed are defined by the form and can't be modified by the user.
             $status = mysqli_real_escape_string($dbc, trim($_POST['status']));
             
             //The chief technician is the only that can be able to modify the assigned technician for the incidents.

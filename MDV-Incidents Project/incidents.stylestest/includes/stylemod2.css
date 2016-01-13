@@ -7,17 +7,22 @@
 	border:0;
 	margin:0;
 	padding:0;
+	padding: 0px 0px 0px 0px;
 }
 
 /* general */
 a {
 	color:#777;
 	text-decoration:none;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 
 a:hover {
 	color:#333;
 	text-decoration:none;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 
 /* body */
@@ -25,25 +30,17 @@ body {
 	background:#ffffff;
 	color:#555;
 	font:0.8em Arial, Helvetica, "bitstream vera sans", sans-serif;
-}
-
-div .center{
-	
-	border-radius: 25px;
-    border: 2px solid #73AD21;
-
-    height: 150px; 
-    margin: 0;
+	margin: 0;
 	padding: 0px 0px 0px 0px;
-	
 }
 
 /* header */
 #header {
 	border-bottom:1px solid #999;
 	height:80px;
-	margin:0 auto;
 	width:751px;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 #header h1 {
 	color:#888;
@@ -52,83 +49,98 @@ div .center{
 	text-align:right;
 	padding:5px;
 	margin-bottom:-20px;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 #header h2 {
 	color:#CCC;
 	font-size:200%;
 	letter-spacing:-2px;
 	text-align:right;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 
 /* navigation */
 #navigation {
 	background:#fafafa;
 	border-right:1px solid #999;
-	margin:0 auto;
 	width:750px;
 	height:40px;
 	list-style:none;
+	margin: 0;
+
 }
 #navigation li {
 	border-left:1px solid #999;
 	float:left;
-	width:149px;
+	width:40%;
 	list-style:none;
+	margin: 0;
+	
 }
 #navigation a {
 	color:#555;
 	display:block;
 	line-height:40px;
 	text-align:center;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 #navigation a:hover {
 	background:#e3e3e3;
 	color:#555;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 #navigation .active {
 	background:#e3e3e3;
 	color:#777;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 
 /* content */
 #content {
 	height:auto;
-	margin:0 auto;
 	padding:0 0 20px;
 	width:751px;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
-#content h1 {
-	border-bottom:1px dashed #999;
-	font-size:1.8em;
-	padding:20px 0 0;
-}
+
 #content p {
 	padding:20px 20px 0;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 
 /* footer */
 #footer {
 	border-top:1px solid #999; 
 	height:50px;
-	margin:0 auto;
-	padding:10px;
 	text-align:center;
 	width:751px;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 
 /* Added by Larry Ullman: */
 .error, .ad {
 	font-weight: bold;
-	color: #C00
+	color: #C00;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 
 input, select, .input {
-	padding: 5px;
 	font-weight: bold;
 	font-size: 1em;
 	color: #008040;
 	background: #FFFFFF;
 	border:1px dotted #004080;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
 }
 #textarea input {
 	

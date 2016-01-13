@@ -27,17 +27,6 @@ body {
 	font:0.8em Arial, Helvetica, "bitstream vera sans", sans-serif;
 }
 
-div .center{
-	
-	border-radius: 25px;
-    border: 2px solid #73AD21;
-
-    height: 150px; 
-    margin: 0;
-	padding: 0px 0px 0px 0px;
-	
-}
-
 /* header */
 #header {
 	border-bottom:1px solid #999;

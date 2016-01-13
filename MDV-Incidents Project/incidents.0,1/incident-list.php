@@ -23,7 +23,7 @@ if ($num > 0) { // If it ran OK, display the records.
 
 	// Table header.
 	echo '<table align="center" cellspacing="15" cellpadding="3" width="90%">
-			<tr><td align="left"><b>Edit</b></td>
+			<tr class="colorh1"><td align="left"><b>Edit</b></td>
 			<td align="left"><b>User</b></td>
 			<td align="left"><b>Assigned Technician</b></td>
 			<td align="left"><b>Current Status</b></td>
