@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title><?php echo $page_title;?>
-	
 	</title>	
 	<link rel="stylesheet" href="includes/style.css" type="text/css" media="screen" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -17,6 +16,7 @@
 			<li><a href="incident-add.php">New Ticket</a></li>
 			<li><a href="incident-list.php">View Tickets</a></li>
 			<?php
+
 // Create a login/logout link:
 
 if (isset($_SESSION['uid'])) {
@@ -31,7 +31,8 @@ if (isset($_SESSION['uid'])) {
     //Saves the number of rows result of the query in the var $num
     $num = mysqli_num_rows($rgroup);
     $rowgroups = mysqli_fetch_array($rgroup, MYSQLI_ASSOC);
-
+    
+    //Creates the new user link if the user is a chief technician.
 	if ($rowgroups['group'] == chief_technician) {
 		echo '<li><a href="add-user.php">New user</a></li>';
 	}

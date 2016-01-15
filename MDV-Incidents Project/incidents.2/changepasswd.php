@@ -11,13 +11,11 @@ require ('../mysqli_connect.php');
 
 // Check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-
 	$errors = array(); // Initialize an error array.
-	
 	
 	// Check for a password and match against the confirmed password:
 	if (!empty($_POST['pass1'])) {
+	 if (preg_match("/^[a-zA-Z(0-9)+]{8,}$/",$_POST['pass1'])) {
 		
 		if ($_POST['pass1'] != $_POST['pass2']) {
 			$errors[] = 'Your password did not match the confirmed password.';
@@ -25,6 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$passwd = mysqli_real_escape_string($dbc, trim($_POST['pass1']));
 		}
 	} else {
+		$errors[] = 'Your password doesn\'t match the minimum requeriments';
+	}
+	}else{
 		$errors[] = 'You forgot to enter your password.';
 	}
 //bueno si es para que entre dentro ... dime que restricion le pondrias para ir pensando
@@ -76,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <h1>Register</h1>
 <form action="changepasswd.php" method="post">
+	<p style=font-weight: bold;>The password must have a minimum of 8 characteres and at least one of them must be a number!</p>
 	<p>New Password: <input type="password" name="pass1" size="10" maxlength="20" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>"  /></p>
 	<p>Confirm New Password: <input type="password" name="pass2" size="10" maxlength="20" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>"  /></p>
 	<p><input type="submit" name="submit" value="Register" /></p>
