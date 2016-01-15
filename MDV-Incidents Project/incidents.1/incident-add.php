@@ -12,7 +12,7 @@
 <body>
     <p>Insert your incidence</p>
 <form action="incident_add.php" method="POST">
-    <textarea name="description" rows="4" cols="40"></textarea> </br>
+    <textarea name="description" rows="4" cols="40" class=estilotextarea> write here</textarea> </br>
     <input type="submit" value="submit"/>
 </form>
 </body>

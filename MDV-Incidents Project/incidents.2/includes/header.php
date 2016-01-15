@@ -4,7 +4,7 @@
 	<title><?php echo $page_title;?>
 	
 	</title>	
-	<link rel="stylesheet" href="includes/bootstrap.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="includes/style.css" type="text/css" media="screen" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
 <body>
@@ -43,7 +43,7 @@ if (isset($_SESSION['uid'])) {
 //Close mysql connection
 //mysqli_close($dbc);
 ?>
-			<li><a href="changepasswd.php">Change your password</a></li>
+			<li><a href="changepasswd.php"> Change your password</a></li>
 		</ul>
 	</div>
 	<div id="content">

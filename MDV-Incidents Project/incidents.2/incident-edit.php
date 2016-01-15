@@ -10,18 +10,9 @@ checksession();
 
 echo '<h1>Edit an incident ticket</h1>';
 
-// Check for a valid user ID, through GET or POST:
-/*if ((isset($_GET['uid'])) && (is_numeric($_GET['uid']))) { // From incident-list.php
-    $uid = $_GET['uid'];
-} elseif ((isset($_POST['uid'])) && (is_numeric($_POST['uid']))) { // Form submission.
-    $uid = $_POST['uid'];
-} else { // No valid ID, kill the script.
-    echo '<p class="error">This page has been accessed in error.</p>';
-    include('includes/footer.html');
-    exit();
-}*/
+//Gets the value iid from incident_list.php to know where to do the updates
 
-if ((isset($_GET['iid'])) && (is_numeric($_GET['iid']))) { // From incident-list.php
+if ((isset($_GET['iid'])) && (is_numeric($_GET['iid']))) {
     $iid = $_GET['iid'];
 } elseif ((isset($_POST['iid'])) && (is_numeric($_POST['iid']))) { // Form submission.
     $iid = $_POST['iid'];
@@ -127,10 +118,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 //Set the query
                 //If the status is OPEN mybe its a reopened ticket, so the close_date has to be null
                 if ($status == "OPEN") {
-                    $q = "UPDATE INCIDENTS SET progress='$progress', status='$status', close_date=NULL, assigned_uid='$assigned_uid' WHERE creator_uid=$uid";
+                    $q = "UPDATE INCIDENTS SET progress='$progress', status='$status', close_date=NULL, assigned_uid='$assigned_uid' WHERE iid='$iid'";
                     //If the status is closed, means that now the ticket is closed, so the close_date must be the date of the moment of closure.
                 } elseif ($status == "CLOSED") {
-                    $q = "UPDATE INCIDENTS SET progress='$progress', status='$status', close_date=CURDATE(), assigned_uid='$assigned_uid' WHERE creator_uid=$uid LIMIT 1";
+                    $q = "UPDATE INCIDENTS SET progress='$progress', status='$status', close_date=CURDATE(), assigned_uid='$assigned_uid' WHERE iid='$iid' LIMIT 1";
                 }
                 
                 //Run the query
@@ -246,8 +237,6 @@ if ($num == 1) {
             // Get the report's information:
             
             $row = mysqli_fetch_array($r, MYSQLI_NUM);
-          //  while ($rowtechnician = mysqli_fetch_array($rtechnician, MYSQLI_ASSOC)) {
-        // while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
             
             echo '<form action="incident-edit.php" method="post">
 				<p>User: ' . $row['0'] . '</p>

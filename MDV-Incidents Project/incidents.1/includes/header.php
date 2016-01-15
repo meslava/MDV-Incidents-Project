@@ -23,7 +23,7 @@
 		<ul>
 			<li><a href="incident-new.php">New ticket</a></li>
 			<li><a href="incident-list.php">View tickets</a></li>
-			<li><a href="incident_add.php">Add incident</a></li>
+			<li><a href="incident-add.php">Add incident</a></li>
 			<li><?php
 // Create a login/logout link:
 //session_start();
