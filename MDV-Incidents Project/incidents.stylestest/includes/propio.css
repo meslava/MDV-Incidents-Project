@@ -1,3 +1,4 @@
+
 #menu{
     position:relative;
     display:block;
@@ -7,7 +8,7 @@
     font-family:Arial,Verdana,Helvitica,sans-serif;
     border-top:4px solid;
     border-color:green;
-    margin-bottom:30px;
+    padding-bottom:3%;
 }
     
 #menu ul{
@@ -19,7 +20,8 @@
 
 #menu ul li{
     display:block;
-    float:left;margin:0;
+    float:left;
+    margin:0;
 }
 #menu ul li a{
     display:block;
@@ -55,9 +57,11 @@
 }
 
 #box {
-    margin-top:10px;
-    margin:0 auto;
-    width:80%;
+   
+    margin-bottom:5%;
+    margin-left:5%;
+    margin-right:10%;
+    width:90%;
     padding: 30px;
     border:groove 0px #000000;
     -moz-border-radius: 34px;
@@ -66,6 +70,15 @@
     -moz-box-shadow: 0px 0px 17px #000000;
     -webkit-box-shadow: 0px 0px 17px #000000;
     box-shadow: 0px 0px 17px #000000;
+    float:left;
+    font-family:Arial,Verdana,Helvitica,sans-serif;
+    
+}
+
+#footer{
+    border-bottom:1px;
+   float:center;
+   margin-top:30%;
 }
 
 textarea{
@@ -78,6 +91,7 @@ textarea{
 /*for responsive tables*/
 @media screen {
 	table {
+	    width:105%;
 		overflow-x: auto;
 		display: block;
 		border-collapse: collapse;
