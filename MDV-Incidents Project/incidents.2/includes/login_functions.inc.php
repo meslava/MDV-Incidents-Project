@@ -59,6 +59,7 @@ function check_login($dbc, $email = '', $pass = '') {
 		if (mysqli_num_rows($r) == 1) {
 
 			// Fetch the record:
+			//Saves the result row as an associative array in row.
 			$row = mysqli_fetch_array ($r, MYSQLI_ASSOC);
 	
 			// Return true and the record:

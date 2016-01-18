@@ -15,6 +15,7 @@ require ('../mysqli_connect.php');
     $rgroup = mysqli_query($dbc, $qgroup);
     //Saves the number of rows result of the query in the var $num
     $num = mysqli_num_rows($rgroup);
+    //Saves the result row as an associative array in rowgroups.
     $rowgroups = mysqli_fetch_array($rgroup, MYSQLI_ASSOC);
     
 //Redirects the user to home if he is not a chief_technician
@@ -33,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (empty($_POST['name'])) {
 		$errors[] = 'You forgot to enter your first name.';
 	} else {
+		//Save in $name the spread characters.
 		$name = mysqli_real_escape_string($dbc, trim($_POST['name']));
 	}
 	
@@ -40,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (empty($_POST['last_name'])) {
 		$errors[] = 'You forgot to enter your last name.';
 	} else {
+		//Save in $lastname the spread characters.
 		$lastname = mysqli_real_escape_string($dbc, trim($_POST['last_name']));
 	}
 	
@@ -48,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($_POST['pass1'] != $_POST['pass2']) {
 			$errors[] = 'Your password did not match the confirmed password.';
 		} else {
+			//Save in $passwd the spread characters.
 			$passwd = mysqli_real_escape_string($dbc, trim($_POST['pass1']));
 		}
 	} else {
@@ -55,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	
 	//This is just in case. The valorsto insert on the group filed are defined by the form and can't be modified by the user.
+    //Save in $group the spread characters.
 	$group=mysqli_real_escape_string($dbc, trim($_POST['group']));
 
 	if (empty($errors)) { // If everything's OK.

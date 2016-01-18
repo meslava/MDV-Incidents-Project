@@ -28,11 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}else{
 		$errors[] = 'You forgot to enter your password.';
 	}
-//bueno si es para que entre dentro ... dime que restricion le pondrias para ir pensando
-
-
-
-//minimo 8 carecteres con minimo un numero
 	if (empty($errors)) { // If everything's OK.
 
 		// Make the update with the new password:
@@ -41,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($r) { // If it ran OK.
 		
 			// Print a message:
-			echo '<h1>You changed your password successfully</h1>';
+			echo '<h1>You changed your password successfully!</h1>';
 	
 		} else { // If it did not run OK.
 			
@@ -50,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<p class="error">You could not register a new user due to a system error. We apologize for any inconvenience.</p>'; 
 			
 			// Debugging message:
-			echo '<p>' . mysqli_error($dbc) . '<br /><br />Query: ' . $q . '</p>';
+			//Comented because it's used only to debug and not for production
+			/*echo '<p>' . mysqli_error($dbc) . '<br /><br />Query: ' . $q . '</p>';*/
 						
 		} // End of if ($r) IF.
 	
@@ -75,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 } // End of the main Submit conditional.
 ?>
+<!--Creates the form -->
 <h1>Register</h1>
 <form action="changepasswd.php" method="post">
 	<p style=font-weight: bold;>The password must have a minimum of 8 characteres and at least one of them must be a number!</p>

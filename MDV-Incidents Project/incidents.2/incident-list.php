@@ -1,5 +1,8 @@
-<?php # Script - incident_list.php #2
-// This script retrieves all the records from the incidents table.
+<?php //incident-list.php
+// This script shows all the information from de INCIDENT TABLE.
+//If the user belongs to the group user he will only be able to see and edit the tickets created by himself.
+//If the user belongs to the group technician he will only be able to see and edit the tickets created or assigned to himself.
+//If the user belongs to the group chief_technician he will be able to see all the tickets.
 session_start();
 $page_title = 'View the tickets of incidents';
 include ('includes/header.php');
@@ -11,19 +14,19 @@ echo '<h1>Incidents tickets list</h1>';
 
 require ('../mysqli_connect.php'); // Connect to the db.
 
-
-  //Query to know the group of the user that is loged in.
+  //Query to know to which group the user belongs.
     $qgroup = "SELECT  `group` FROM  `USERS` WHERE uid ={$_SESSION['uid']}";
     //Run the query
     $rgroup = mysqli_query($dbc, $qgroup);
-    //Saves the number of rows result of the query in the var $num
+   //Saves the result number of rows from the query in the var $num.
     $num = mysqli_num_rows($rgroup);
+   //Saves the result row as an associative array in rowgroups.
     $rowgroups = mysqli_fetch_array($rgroup, MYSQLI_ASSOC);
         
-        
+//Checks if the user belongs to the group user or tehnician     
 if ($rowgroups['group'] == user || $rowgroups['group'] == technician ) {			
 		
-// Make the query:
+//Query to get the data to fill the user and technician form.
 
 $q = "SELECT user.uid, user.name as user,technician.name as technician,i.status, i.open_date, i.close_date, i.description, i.progress, i.iid 
 FROM
@@ -37,7 +40,7 @@ $r = mysqli_query ($dbc, $q); // Run the query.
 $num = mysqli_num_rows($r);
 
 }else if ($rowgroups['group'] == chief_technician) {
-	
+	//Query to get the data to fill the chief_technician form.
 	$q = "SELECT user.uid, user.name as user,technician.name as technician,i.status, i.open_date, i.close_date, i.description , i.progress, i.iid
 FROM
   INCIDENTS i,
@@ -73,6 +76,7 @@ $num = mysqli_num_rows($r);
 				<td align="left"><b>Progress</b></td></tr>';
 
 			// Fetch and print all the records:
+			// While $row is equal to the result row (for every incident),display the options..
 				while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 		
 			//Sets the status color. If the status is OPEN it will be displayed with green text. Otherwise it will be displayed as red.

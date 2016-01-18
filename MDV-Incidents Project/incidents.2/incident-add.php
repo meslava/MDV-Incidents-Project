@@ -10,8 +10,8 @@
 	<title></title>
 	</head>
 <body>
-    <p>Insert your incidence</p>
-<form action="incident_add.php" method="POST">
+    <p>Insert your incidence:</p>
+<form action="incident-add.php" method="POST">
     <textarea name="description" rows="4" cols="40"></textarea> </br>
     <input type="submit" value="submit"/>
 </form>
@@ -20,7 +20,7 @@
 
 <?php 
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') { //if not is post end the script here
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') { //if is not post end the script here
     die;
 }
 
@@ -30,26 +30,27 @@ require ('../mysqli_connect.php'); //connect to sql
 
 
 	if (empty($_POST['description'])) { //see if is empty the value
-		$errors[] = 'You forgot enter you incidence.';
-	} else {
-		$tex = mysqli_real_escape_string($dbc, trim($_POST['description'])); 
+		$errors[] = 'You forgot enter you incidence.'; // save in this array the string's error
+	} else { 
+	    //Save in $tex the spread characters.
+		$tex = mysqli_real_escape_string($dbc, trim($_POST['description'])); //escape special caracters
 	}
 
 
 if(empty($errors)){ //if all is ok
-    	$ins =  "INSERT INTO INCIDENTS (status, open_date, description, creator_uid) VALUES ('OPEN',curdate(),'$tex',{$_SESSION['uid']})" ;
-    	$r = @mysqli_query ($dbc, $ins); 
-    	if ($r){
+    	$ins =  "INSERT INTO INCIDENTS (status, open_date, description, creator_uid) VALUES ('OPEN',curdate(),'$tex',{$_SESSION['uid']})" ; // add in sql the insert
+    	$r = @mysqli_query ($dbc, $ins); //make query the database
+    	if ($r){//if make it
     	echo "Successful";
     	    
-    	}else{
+    	}else{// if don't make it
     	echo "Error to insert";
     	
     	    
     	}
 }else{ //if have errors
     echo"Error";
-   foreach ($errors as $error){
+   foreach ($errors as $error){//run the var errors and show the message
        echo $error;
    }
     

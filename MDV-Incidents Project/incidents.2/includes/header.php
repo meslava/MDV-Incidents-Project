@@ -1,3 +1,6 @@
+<!--This page is used for the header, navegation bar and content being used for all the principal web pages.
+Here is produced the change of login to logout by means of check the session. The add-user.php will appears only for the chief_technician.-->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -17,7 +20,7 @@
 			<li><a href="incident-list.php">View Tickets</a></li>
 			<?php
 
-// Create a login/logout link:
+// Create a login/logout link depedents from the session if is set or if is not set.
 
 if (isset($_SESSION['uid'])) {
 	echo '<li><a href="logout.php">Logout</a></li>';
@@ -28,8 +31,10 @@ if (isset($_SESSION['uid'])) {
     $qgroup = "SELECT  `group` FROM  `USERS` WHERE uid ={$_SESSION['uid']}";
     //Run the query
     $rgroup = mysqli_query($dbc, $qgroup);
-    //Saves the number of rows result of the query in the var $num
+    //Saves the result number of rows from the query in the var $num.
     $num = mysqli_num_rows($rgroup);
+    if ($num > 0) { 
+    // If it ran OK then saves the result row as an associative array in rowgroups.
     $rowgroups = mysqli_fetch_array($rgroup, MYSQLI_ASSOC);
     
     //Creates the new user link if the user is a chief technician.
@@ -39,9 +44,12 @@ if (isset($_SESSION['uid'])) {
 } else {
 	echo '<li><a href="index.php">Login</a></li>';
 }
+}else{
+	echo '<p class="error">There are currently no registered groups.</p>';
+}
 
 
-//Close mysql connection
+//mysqli_close is commented because produce a error.
 //mysqli_close($dbc);
 ?>
 			<li><a href="changepasswd.php"> Change your password</a></li>
