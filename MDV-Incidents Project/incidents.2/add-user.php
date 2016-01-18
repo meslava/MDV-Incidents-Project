@@ -1,5 +1,5 @@
 <?php 
-
+//This page is for add users only by chief_technician.
 session_start();
 $page_title = 'Add a new user';
 include ('includes/header.php');
@@ -18,7 +18,10 @@ require ('../mysqli_connect.php');
     //Saves the result row as an associative array in rowgroups.
     $rowgroups = mysqli_fetch_array($rgroup, MYSQLI_ASSOC);
     
-//Redirects the user to home if he is not a chief_technician
+/*Redirects the user to home if he is not a chief_technician.
+This is for if would appear the add.user in other users that don't be chief_techincians,
+they be redirected to index despite that in the header, is done for that only appear 
+the page add.user to chief_technician.*/
 if ($rowgroups['group'] != chief_technician) {
 	
 	require ('includes/login_functions.inc.php');
@@ -67,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//Generate an email for the new user, based of the first letter of the name and the complete last_name
 		
 		$email=substr($name,0,1).$lastname.'@company.com';
+		//Saves the content in lowcase from $email in $email
 		$email=strtolower($email);
 	
 		// Register the user in the database...

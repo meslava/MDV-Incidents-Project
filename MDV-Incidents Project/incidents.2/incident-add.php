@@ -20,7 +20,7 @@
 
 <?php 
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') { //if is not post end the script here
+if ($_SERVER['REQUEST_METHOD'] != 'POST') { //if is not post end the script here
     die;
 }
 

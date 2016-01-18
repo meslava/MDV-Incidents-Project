@@ -49,7 +49,7 @@ if (isset($_SESSION['uid'])) {
 }
 
 
-//mysqli_close is commented because produce a error.
+//mysqli_close is commented because it produces a error.
 //mysqli_close($dbc);
 ?>
 			<li><a href="changepasswd.php"> Change your password</a></li>

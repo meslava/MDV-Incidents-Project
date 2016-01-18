@@ -1,4 +1,4 @@
-<?php # script - cheksession.php
+<?php # cheksession.php
 // This page contains functions to check if the session has been set (using !isset) through the user id and so, avoid repeat the code.
 // Also, this functions call another functions from login_functions.inc.php.
 
